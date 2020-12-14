@@ -23,15 +23,6 @@ class KafkaOutput(Output):
     def _connect(self) -> Producer:
         return Producer(self._config)
 
-    def _recreate(self):
-        self.log.warning("Recreating kafka producer")
-        self._producer.close()
-        self._producer = self._connect()
-
-    def _acked(self, err, msg):
-        if err is not None:
-            raise Exception(err)
-
     def send(self, message: Message):
         """
         async send, without guarantee to be delivered
@@ -39,7 +30,7 @@ class KafkaOutput(Output):
         self._flush()
         payload: str = self._convert(message)
         self.log.debug(f"producing message {payload}")
-        self._producer.produce(topic=self._topic, value=payload, callback=self._acked)
+        self._producer.produce(topic=self._topic, value=payload)
 
     def _flush(self):
         if self._last_flush_time_ms + self._flush_interval_ms < (time.time() * 1000):
