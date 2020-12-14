@@ -1,11 +1,10 @@
 from dataclasses import dataclass
 
-from typing import Union
-
 
 @dataclass
 class Message:
     url: str
     status: int
+    response_time_micro: float
     regexp_checked: bool
-    regexp_passed: Union[bool, None]
+    regexp_passed: bool

@@ -1,0 +1,20 @@
+{
+  "kafka_config": {
+    "bootstrap.servers": "localhost:9092",
+    "security.protocol": "plaintext",
+    "ssl.ca.location": "",
+    "ssl.certificate.location": "",
+    "ssl.key.location": "",
+    "ssl.key.password": "",
+    "ssl.endpoint.identification.algorithm": "none",
+    "acks": 1,
+    "retries": 2,
+    "batch.num.messages": 10
+  },
+  "kafka_topic": "webmonitoring",
+  "logging_config_file": "logging.conf",
+  "websites": [
+      {"url": "https://www.google.com/x", "regexp": "Google"},
+      {"url": "https://www.google.com", "regexp": null}
+  ]
+}

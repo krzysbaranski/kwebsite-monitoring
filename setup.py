@@ -2,7 +2,10 @@ from setuptools import setup
 
 
 REQUIREMENTS = {
-    'base': [],
+    'base': [
+            'confluent_kafka==1.4.2',
+            'requests==2.24.0'
+            ],
     'test': []
 }
 setup(
