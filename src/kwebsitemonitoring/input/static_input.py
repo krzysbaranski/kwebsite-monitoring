@@ -7,6 +7,7 @@ from model.website import Website
 class StaticInput(Input):
     def __init__(self, config: dict):
         self._data: List[Website] = []
+        self._closed = False
         for item in config:
             self._data.append(Website(url=item["url"], regexp=item["regexp"]))
 
@@ -14,4 +15,7 @@ class StaticInput(Input):
         return self._data
 
     def close(self):
-        pass
+        self._closed = True
+
+    def is_closed(self):
+        return self._closed

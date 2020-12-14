@@ -10,7 +10,7 @@ from output.output import Output
 
 
 class KafkaOutput(Output):
-    def __init__(self, config: dict, topic: str):
+    def __init__(self, config: dict, topic: str) -> None:
         self.log = logging.getLogger()
         self._config = config
         self._topic = topic
@@ -23,16 +23,17 @@ class KafkaOutput(Output):
     def _connect(self) -> Producer:
         return Producer(self._config)
 
-    def send(self, message: Message):
+    def send(self, message: Message) -> None:
         """
         async send, without guarantee to be delivered
+        # TODO make sure we're not writing into the void
         """
         self._flush()
         payload: str = self._convert(message)
         self.log.debug(f"producing message {payload}")
         self._producer.produce(topic=self._topic, value=payload)
 
-    def _flush(self):
+    def _flush(self) -> None:
         if self._last_flush_time_ms + self._flush_interval_ms < (time.time() * 1000):
             self.log.debug("flush producer")
             self._producer.flush(self._flush_timeout)

@@ -4,7 +4,8 @@ from setuptools import setup
 REQUIREMENTS = {
     'base': [
             'confluent_kafka==1.4.2',
-            'requests==2.24.0'
+            'requests==2.24.0',
+            'psycopg2==2.8.6'
             ],
     'test': []
 }

@@ -13,3 +13,7 @@ class Input(ABC):
     @abstractmethod
     def close(self) -> None:
         pass
+
+    @abstractmethod
+    def is_closed(self) -> bool:
+        pass

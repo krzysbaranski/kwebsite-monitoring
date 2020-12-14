@@ -5,7 +5,7 @@ from model.message import Message
 
 class Output(ABC):
     @abstractmethod
-    def send(self, message: Message):
+    def send(self, message: Message) -> None:
         pass
 
     @abstractmethod

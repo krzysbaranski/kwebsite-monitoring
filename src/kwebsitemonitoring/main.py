@@ -26,7 +26,7 @@ class App:
         output: Output = KafkaOutput(config=self._config["kafka_config"], topic=self._config["kafka_topic"])
         check: Check = RequestCheck()
         try:
-            while self.running:
+            while self.running and not input.is_closed():
                 websites = input.poll()
                 # TODO configure min time between consecutive checks
                 # TODO parallel checks
