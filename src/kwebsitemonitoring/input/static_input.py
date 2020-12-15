@@ -1,10 +1,10 @@
 from typing import List
 
-from input.input import Input
+from input.websiteinput import WebsiteInput
 from model.website import Website
 
 
-class StaticInput(Input):
+class StaticInput(WebsiteInput):
     def __init__(self, config: dict):
         self._data: List[Website] = []
         self._closed = False

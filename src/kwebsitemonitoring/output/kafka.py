@@ -6,10 +6,10 @@ from confluent_kafka import Producer, KafkaException
 from dataclasses import asdict
 
 from model.message import Message
-from output.output import Output
+from output.messageoutput import MessageOutput
 
 
-class KafkaOutput(Output):
+class KafkaOutput(MessageOutput):
     def __init__(self, config: dict, topic: str) -> None:
         self.log = logging.getLogger()
         self._config = config

@@ -6,11 +6,11 @@ from types import FrameType
 
 from check.check import Check
 from check.request_check import RequestCheck
-from input.input import Input
+from input.websiteinput import WebsiteInput
 from input.static_input import StaticInput
 from model.message import Message
 from output.kafka import KafkaOutput
-from output.output import Output
+from output.messageoutput import MessageOutput
 
 
 class App:
@@ -22,8 +22,8 @@ class App:
         self.log = logging.getLogger()
 
     def main(self) -> None:
-        input: Input = StaticInput(config=self._config["websites"])
-        output: Output = KafkaOutput(config=self._config["kafka_config"], topic=self._config["kafka_topic"])
+        input: WebsiteInput = StaticInput(config=self._config["websites"])
+        output: MessageOutput = KafkaOutput(config=self._config["kafka_config"], topic=self._config["kafka_topic"])
         check: Check = RequestCheck()
         try:
             while self.running and not input.is_closed():
@@ -33,6 +33,9 @@ class App:
                 for item in websites:
                     message: Message = check.check(website=item)
                     output.send(message=message)
+        except Exception as e:
+            self.log.exception(f"Exception in main loop: {e}")
+            raise e
         finally:
             if input:
                 input.close()

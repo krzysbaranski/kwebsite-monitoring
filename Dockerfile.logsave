@@ -9,4 +9,4 @@ ADD src /app/src
 ADD test /app/test
 ADD config.json /app/config.json
 RUN pip install -e .
-CMD ["python", "/app/src/kwebsitemonitoring/websitecheck.py"]
+CMD ["python", "/app/src/kwebsitemonitoring/logsave.py"]

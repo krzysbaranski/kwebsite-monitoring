@@ -8,3 +8,4 @@ class Message:
     response_time_micro: float
     regexp_checked: bool
     regexp_passed: bool
+# TODO timestamp

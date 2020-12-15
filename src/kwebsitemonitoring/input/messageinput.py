@@ -2,12 +2,11 @@ from abc import abstractmethod, ABC
 
 from typing import List
 
-from model.website import Website
+from model.message import Message
 
-
-class Input(ABC):
+class MessageInput(ABC):
     @abstractmethod
-    def poll(self) -> List[Website]:
+    def poll(self) -> List[Message]:
         pass
 
     @abstractmethod

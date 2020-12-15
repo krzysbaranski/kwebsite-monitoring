@@ -9,12 +9,26 @@
     "ssl.endpoint.identification.algorithm": "none",
     "acks": 1,
     "retries": 2,
-    "batch.num.messages": 10
+    "batch.num.messages": 10,
+    "group.id": "test"
   },
   "kafka_topic": "webmonitoring",
   "logging_config_file": "logging.conf",
   "websites": [
-      {"url": "https://www.google.com/x", "regexp": "Google"},
-      {"url": "https://www.google.com", "regexp": null}
-  ]
+    {
+      "url": "https://www.google.com/x",
+      "regexp": "Google"
+    },
+    {
+      "url": "https://www.google.com",
+      "regexp": null
+    }
+  ],
+  "database": {
+    "host": "localhost",
+    "database": "postgres",
+    "user": "postgres",
+    "password": "krzysztof"
+  },
+  "database_table": "website_status"
 }
